@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+{% extends 'base.html' %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+{% block content %}
+    <h1>Todo List</h1>
+    <table style="width: 100%">
+    <tr>
+        <th> Task Name</th>
+        <th> Publish date</th>
+        <th> Deadline date</th>
+    </tr>
+    {% for task in object_list %}
+    <tr>
+      <th> {{ task.name }}</th>
+      <th> {{ task.pub_date }}</th>
+      <th> {{ task.must_finish_by }}</th>
+    </tr>
+    {% endfor %}
+    
+    </table>
+
+
+{% endblock %}
+
+</body>
+</html>

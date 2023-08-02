@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+{% extends 'base.html' %}
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+    {% block content %}
+
+    <h2> Create new task</h2>
+    <form action="{% url 'create-task' %}" method="post" >
+    {% csrf_token %}
+    {% for field in form %}
+        {% if field.name == 'name' %}
+            <ul>
+            <li>
+                  <label for="name">Task Name:</label>
+                  <input type="text" id="name" name="name" required>
+            </li>
+            </ul>
+        {% endif %}
+
+        {% if field.name == 'must_finish_by' %}
+            <ul>
+            <li>
+                  <label for="must_finish_by">Deadline:</label>
+                  <input type="date" id="must_finish_by" name="must_finish_by" required>
+            </li>
+            </ul>
+        {% endif %}
+    {% endfor %}
+    <button type="submit" class="btn btn-primary">Send It!</button>
+    </form>
+{% endblock %}
+
+</body>
+</html>
