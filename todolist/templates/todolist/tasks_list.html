@@ -31,7 +31,8 @@
       <td> {{ task.pub_date }}</td>
       <td> {{ task.must_finish_by }}</td>
       <td>
-          <a href="{% url 'deleting' task_id=task.id %}" class="btn btn-danger">Delete</a>
+          <a href="{% url 'delete-task' pk=task.id %}" class="btn btn-danger">Delete</a>
+          <a href="" class="btn btn-primary">Update</a>
       </td>
     </tr>
     {% endfor %}

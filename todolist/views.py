@@ -1,5 +1,5 @@
-from django.http import HttpResponse
-from django.views.generic import CreateView,ListView,DeleteView
+from django.http import HttpResponse, HttpResponseRedirect
+from django.views.generic import CreateView,ListView,DeleteView,UpdateView
 from django.urls import reverse_lazy
 from django.shortcuts import render
 
@@ -18,11 +18,12 @@ class CreateTask(CreateView):
 class DeleteTask(DeleteView):
     model = Tasks
     context_object_name = 'tasks'
+    template_name = 'todolist/tasks_confirm_delete.html'
     success_url = reverse_lazy('list-task')
 
-    def form_valid(self, form):
-        return super(DeleteTask, self).form_valid()
-
+class UpdateTask(UpdateView):
+    model = Tasks
+    context_object_name = 'tasks'
 
 class ListTask(ListView):
     model = Tasks
@@ -31,9 +32,6 @@ class ListTask(ListView):
 
 
 
-def ask_for_deleting(request, task_id):
-    context = {'task_id': task_id}
-    return render(request, 'todolist/task_deleting.html', context)
 
 
 
